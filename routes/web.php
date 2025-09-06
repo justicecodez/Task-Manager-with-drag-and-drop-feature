@@ -9,6 +9,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [authController::class, 'dashboard'])->name('auth.dashboard');
     Route::get('/auth/task', [authController::class, 'task'])->name('auth.task');
     Route::get('/auth/logout', [authController::class, 'logout'])->name('auth.logout');
+    Route::get('/auth/task/action/{type}', [authController::class, 'taskType'])->name('auth.task.type');
     Route::get('/auth/completed/tasks/{id}', [authController::class, 'completedTasks'])->name('auth.completed.tasks');
     Route::get('/auth/edit/task/{id}', [authController::class, 'editTask'])->name('auth.edit.task');
     Route::get('/auth/delete/task/{id}', [authController::class, 'deleteTask'])->name('auth.delete.task');

@@ -49,6 +49,17 @@ class authController extends Controller
         return redirect()->route('login');
     }
 
+    function taskType(Request $request) {
+        $type=$request->type;
+        if ($type=='done' || $type=='pending' || $type=='todo') {
+            $data=task::where('user_id', auth()->id())->where('status', $type)->paginate(15);
+        }else {
+            $data=task::where('user_id', auth()->id())->paginate(15);
+        }
+
+        return view('auth.task.task',['tasks'=>$data]);
+    }
+
     function deleteTask(Request $request) {
         $id = $request->id;
         $task = task::find($id);

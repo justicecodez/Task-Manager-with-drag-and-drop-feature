@@ -35,6 +35,24 @@
                         <h3 class="text-center mb-4">Tasks</h3>
                         <div id="dragResult" class="alert  alert-success">
                         </div>
+                        <div class="card-header d-flex justify-content-end align-items-center">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                    id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-filter"></i> Filter
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('auth.task.type', ['type' => 'all']) }}">All Tasks</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('auth.task.type', ['type' => 'done']) }}">Completed</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('auth.task.type', ['type' => 'todo']) }}">In Progress</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('auth.task.type', ['type' => 'pending']) }}">Pending</a></li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             @if (session('error'))
                                 <div class="alert alert-danger">
@@ -45,6 +63,7 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
+
                             <table id="table" class="table table-hover">
                                 <thead>
                                     <tr>
@@ -145,9 +164,10 @@
         <script>
             const create = "{{ route('auth.create.task') }}";
             const update = "{{ route('auth.update.task') }}";
-            const dragndrop="{{ route('auth.dragdrop') }}";
+            const dragndrop = "{{ route('auth.dragdrop') }}";
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script><script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/crud.js') }}"></script>
